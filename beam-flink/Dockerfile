@@ -26,9 +26,14 @@ FROM flink
 
 RUN curl http://www.gutenberg.org/cache/epub/1128/pg1128.txt > /tmp/kinglear.txt
 
-ADD beam-starter-0.1.jar ~/downloads/
+ADD beam-starter-0.1.jar /root/downloads/
 
 ADD config-flink-load-jar.sh /usr/local/flink/bin/
 RUN chmod +x /usr/local/flink/bin/config-flink-load-jar.sh
+
+#RUN (/usr/local/flink/bin/config-flink.sh jobmanager &); \
+#    sleep 10 && \
+#	curl -H "Expect:" -F "jarfile=@/root/downloads/beam-starter-0.1.jar;type=application/java-archive" http://localhost:8080/jars/upload && \
+#	/usr/local/flink/bin/jobmanager.sh stop
 
 CMD ["/usr/local/flink/bin/config-flink.sh", "taskmanager"]

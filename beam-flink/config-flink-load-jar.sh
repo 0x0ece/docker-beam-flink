@@ -37,7 +37,7 @@ if [ "$1" = "jobmanager" ]; then
     $EXEC/jobmanager.sh start cluster
     # load initial jar
     sleep 10
-    curl -H "Expect:" -F "jarfile=@~/downloads/beam-starter-0.1.jar;type=application/java-archive" http://localhost:8080/jars/upload
+    curl -H "Expect:" -F "jarfile=@/root/downloads/beam-starter-0.1.jar;type=application/java-archive" http://localhost:8080/jars/upload
 
 elif [ "$1" = "taskmanager" ]; then
     echo "Configuring Task Manager on this node"
