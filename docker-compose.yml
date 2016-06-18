@@ -17,7 +17,7 @@
 ################################################################################
 
 jobmanager:
-    image: beam-flink
+    image: dataradiant/beam-flink
     ports:
         - "48080:8080"
         - "48081:8081"
@@ -27,7 +27,7 @@ jobmanager:
         - "22"
     command: /usr/local/flink/bin/config-flink-load-jar.sh jobmanager
 taskmanager:
-    image: beam-flink
+    image: dataradiant/beam-flink
     ports:
         - "22"
     expose:

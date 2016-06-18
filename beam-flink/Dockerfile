@@ -18,19 +18,14 @@
 
 FROM flink
 
-# RUN apt-get update; apt-get install -y git
-
-#TODO use github release when repo is public
-#RUN cd ~/downloads && \
-#    wget -q -O - https://github.com/dataradiant/beam-starter/releases/download/v0.1/beam-starter-0.1.jar
+RUN curl -L https://github.com/ecesena/beam-starter/releases/download/v0.1/beam-starter-0.1.jar > /root/downloads/beam-starter-0.1.jar
 
 RUN curl http://www.gutenberg.org/cache/epub/1128/pg1128.txt > /tmp/kinglear.txt
-
-ADD beam-starter-0.1.jar /root/downloads/
 
 ADD config-flink-load-jar.sh /usr/local/flink/bin/
 RUN chmod +x /usr/local/flink/bin/config-flink-load-jar.sh
 
+#TODO load jar at image level (Flink doesn't allow this yet)
 #RUN (/usr/local/flink/bin/config-flink.sh jobmanager &); \
 #    sleep 10 && \
 #	curl -H "Expect:" -F "jarfile=@/root/downloads/beam-starter-0.1.jar;type=application/java-archive" http://localhost:8080/jars/upload && \
