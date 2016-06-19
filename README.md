@@ -1,42 +1,40 @@
-# Apache Beam (over Flink) on Docker
+# Docker image with Apache Beam + Flink
 
-## Installation
+## Beam & Flink on Docker
 
-0. Prerequisites: `docker` and `docker-compose`
+Prerequisites: `docker` and `docker-compose`
 
 1. Clone this repo
 
-2. Run `sh ./build.sh`
-
-## Deploy
-
-1. Deploy cluster and see config/setup log output (best run in a screen session)
+2. Deploy cluster and see config/setup log output (best run in a screen session)
 
   `docker-compose up`
 
-  Or, deploy as a daemon (and return)
+  or deploy as a daemon (and return)
 
   `docker-compose up -d`
 
-2. Scale the cluster up or down to *N* TaskManagers
+3. Scale the cluster up or down to *N* TaskManagers
 
   `docker-compose scale taskmanager=<N>`
 
-## Run a Demo
+## Run Beam WordCount Pipeline
 
-1. Open the web UI on (exposed on port 48080)
+Open the web UI on (exposed on port 48080)
 
-  `open http://localhost:48080`
+   `open http://localhost:48080`
 
-   or on Mac OS X with `docker-machine`
+   or on Mac or Windows with `docker-machine`
 
-  `open http://$(docker-machine ip default):48080`
+   `open http://$(docker-machine ip default):48080`
+   
+Next:
 
-2. Click "Submit new Job" in the right menu
+1. Click "Submit new Job" in the left menu
 
-3. Flag the checkbox near `beam-starter-<ver>.jar`
+2. Flag the checkbox near `beam-starter-<ver>.jar`
 
-4. Click on "Show Plan" (or "Submit") -- no param is needed, but you can play with that too
+3. Click on "Submit" (or "Show Plan") -- no param is needed, but you can play with that too
 
 ![Home Page](https://raw.githubusercontent.com/ecesena/docker-beam-flink/master/screenshots/showplan.png)
 
@@ -46,23 +44,21 @@
 
 `ssh root@$(docker-machine ip default) -p 220`
 
-The password is 'secret'
+The password is "secret"
 
 - Kill the cluster
 
-`docker-compose kill`
+   `docker-compose kill`
 
 - Upload a jar to the cluster
 
-`scp -P 220 <your_jar> root@$(docker-machine ip default):/<your_path>`
+   `scp -P 220 <your_jar> root@$(docker-machine ip default):/<your_path>`
 
-- Run a topology
+- Run any Flink topology
 
-`ssh -p 220 root@$(docker-machine ip default) /usr/local/flink/bin/flink run -c <your_class> <your_jar> <your_params>`
+   `ssh -p 220 root@$(docker-machine ip default) /usr/local/flink/bin/flink run -c <your_class> <your_jar> <your_params>`
 
-or
-
-ssh to the job manager and run the topology from there.
+   or ssh to the job manager and run the topology from there.
 
 ## Ports
 
@@ -76,11 +72,17 @@ ssh to the job manager and run the topology from there.
 
 Edit the `docker-compose.yml` file to edit port settings.
 
+## Build Docker Images from Scratch
+
+Clone this repo, then run `sh build.sh`.
+
 ## TODO
 
 - Add the JAR to the front end during image building
-- Remove `beam-starter-<ver>.jar` from this repo and download it from release
 
 ## Open source
 
-Forked from https://github.com/apache/flink/tree/master/flink-contrib/docker-flink
+ - Forked from https://github.com/apache/flink/tree/master/flink-contrib/docker-flink
+ - Apache Beam: https://beam.incubator.apache.org
+ - Apache Flink: https://flink.apache.org
+ - Starter repo for Apache Beam (included in this image): https://github.com/ecesena/beam-starter
