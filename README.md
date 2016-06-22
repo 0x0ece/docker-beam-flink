@@ -1,5 +1,7 @@
 # Docker image with Apache Beam + Flink
 
+Read the blog post [A quick demo of Apache Beam with Docker](https://medium.com/@ecesena/a-quick-demo-of-apache-beam-with-docker-da98b99a502a).
+
 ## Beam & Flink on Docker
 
 Prerequisites: `docker` and `docker-compose`
@@ -86,3 +88,4 @@ Clone this repo, then run `sh build.sh`.
  - Apache Beam: https://beam.incubator.apache.org
  - Apache Flink: https://flink.apache.org
  - Starter repo for Apache Beam (included in this image): https://github.com/ecesena/beam-starter
+ - Blog: [A quick demo of Apache Beam with Docker](https://medium.com/@ecesena/a-quick-demo-of-apache-beam-with-docker-da98b99a502a).
